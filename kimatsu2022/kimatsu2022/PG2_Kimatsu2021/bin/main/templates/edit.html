@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>編集画面</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <header>
+        <h1>編集画面</h1>
+    </header>
+
+	<main>
+        <p>
+            アカウントを編集します。
+        </p>
+
+		<form action="#" th:action="@{/edit}" th:object="${account}" method="post">
+			<table>
+				<tr>
+					<td>ID:<input type="hidden" th:field="*{id}"></td>
+					<td th:text="*{id}"></td>
+				</tr>
+				<tr>
+					<td>名前:</td>
+					<td><input type="text" th:field="*{name}"></td>
+				</tr>
+				<tr>
+					<td>クラス:</td>
+					<td><input type="text" th:field="*{className}"></td>
+				</tr>
+				<tr>
+					<td>電話番号:</td>
+					<td><input type="text" th:field="*{tel}"></td>
+				</tr>
+				<tr>
+					<td>住所:</td>
+					<td><input type="text" th:field="*{address}"></td>
+				</tr>
+
+				<tr>
+					<td colspan="2" align="center">
+                        <button type="submit">保存</button>
+                    </td>
+				</tr>
+			</table>
+            <ul th:if="${#fields.hasErrors()}">
+                <li th:if="${#fields.hasErrors('name')}"><strong>名前</strong>：<span th:errors="*{name}"></span></li>
+                <li th:if="${#fields.hasErrors('className')}"><strong>クラス</strong>：<span th:errors="*{className}"></span></li>
+            </ul>
+		</form>
+
+	</main>
+
+   <center> <footer>
+        <a th:href="@{/}">Back</a> <br>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Log Out" />
+		</form>
+    </footer>
+</center>
+</body>
+</html>

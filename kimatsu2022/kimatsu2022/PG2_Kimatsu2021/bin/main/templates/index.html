@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	
+<head>
+    <meta charset="UTF-8"> 
+    <title>アカウント一覧</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <header>
+        <h1>アカウント一覧</h1>
+		<center>
+			<img src="/css/image/header.jpg" alt="cazzo" width="10%">
+		</center>
+		
+		
+    </header>
+	
+
+	<main>
+        <p th:if="${message}" th:text="${message}">
+            メッセージ
+        </p>
+
+        <p>
+            <input type="button" onclick="location.href='/new';" value="新規アカウント作成" />
+        </p>
+
+		<table>
+			<thead>
+				<th>ID</th>
+				<th>名前</th>
+				<th>クラス</th>
+				<th>電話</th>
+				<th>住所</th>
+				<th>操作</th>
+			</thead>
+
+			<tbody>
+				<tr th:each="account : ${listAccounts}" th:object="${account}">
+					<td th:text="*{id}"></td>
+					<td th:text="*{name}"></td>
+					<td th:text="*{className}"></td>
+					<td th:text="*{tel}"></td>
+					<td th:text="*{address}"></td>
+					<td>
+                        <input type="button" th:onclick="'location.href=\''+@{/edit/{id}(id=*{id})}+'\';'" value="編集">&nbsp;
+                        <input type="button" th:onclick="'location.href=\''+@{/delete/{id}(id=*{id})}+'\';'" value="削除">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p th:if="${listAccounts.size() == 0}">データは存在しません。</p>
+
+    </main>
+	<footer>
+		<a th:href="@{/}">HOME</a>
+	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Log Out" />
+	</form>
+</footer>
+</body>
+</html>

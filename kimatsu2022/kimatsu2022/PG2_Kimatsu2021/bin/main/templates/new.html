@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	>
+<head>
+    <meta charset="UTF-8">
+    <title>新規作成</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <header>
+        <h1>新規作成</h1>
+    </header>
+
+	<main>
+        <p>
+            アカウントを新しく作成します。
+        </p>
+
+		<form action="#" th:action="@{/new}" th:object="${account}" method="post">
+			<table>
+				<tr>
+					<td>名前:</td>
+					<td><input type="text" th:field="*{name}"></td>
+				</tr>
+				<tr>
+					<td>クラス:</td>
+					<td><input type="text" th:field="*{className}"></td>
+				</tr>
+				<tr>
+					<td>電話番号:</td>
+					<td><input type="text" th:field="*{tel}"></td>
+				</tr>
+				<tr>
+					<td>住所:</td>
+					<td><input type="text" th:field="*{address}"></td>
+				</tr>
+
+				<tr>
+					<td colspan="2" align="center">
+                        <button type="submit">作成</button>
+                    </td>
+				</tr>
+			</table>
+		</form>
+
+	</main>
+
+    <footer>
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" />
+		</form>
+        <a th:href="@{/}">Back</a> <br>
+    </footer>
+</body>
+</html>
